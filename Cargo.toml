@@ -1,0 +1,13 @@
+[package]
+name = "arge-rust-wrapper"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11.24", features = ["serde_json", "json"] }
+serde = { version = "1.0.197", features = ["derive", "serde_derive"] }
+serde_json = { version = "1.0.114", features = ["default"] }
+chrono = { version = "0.4.34", features = ["now"] }
+tokio = { version = "1.36.0", features = ["full"] }
