@@ -1,8 +1,6 @@
 pub mod arge;
 
 mod test {
-    use crate::arge::Location;
-
     #[tokio::test]
     async fn get_poe_sample() {
         let abbreviation: String = "poe".to_string();

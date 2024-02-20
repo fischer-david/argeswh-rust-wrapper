@@ -5,7 +5,6 @@ use serde_json::Value;
 
 #[derive(Debug)]
 pub struct Location {
-    abbreviation: String,
     pub response: LocationResponse
 }
 
@@ -24,7 +23,6 @@ impl Location {
                 match response.json::<LocationResponse>().await {
                     Ok(response) => {
                         Some(Location {
-                            abbreviation,
                             response
                         })
                     },
@@ -44,7 +42,7 @@ impl Location {
     pub async fn get_items_by_date(&self, date: DateTime<Local>) -> Option<Vec<Item>> {
         let url = format!("https://main.necta.at/public?action=cprof_menu&profile={}&costc={}&language=1&date={}&vcode={}", &self.response.cprof, &self.response.costc, &date.format("%Y-%m-%d"), &self.response.vcode);
 
-        return match reqwest::Client::new().post(&url).send().await {
+        return match Client::new().post(&url).send().await {
             Ok(response) => {
                 match response.json::<Vec<Item>>().await {
                     Ok(response) => {
